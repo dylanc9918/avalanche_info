@@ -1,10 +1,9 @@
 from datetime import datetime
 import re
 from shapely.geometry import Point
-from DBconn.db_connection import conn
 
 
-def insert_avalanche_summary(incident_json):
+def insert_avalanche_summary(incident_json, conn):
 
     avalanche_json = incident_json['avalanche_obs']
 
