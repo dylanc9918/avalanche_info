@@ -1,10 +1,10 @@
 
 from DBconn.db_connection import create_connection
-import IncidentSummary.HandleIncident as HandleIncident
-import AvalancheSummary.HandleAvalanche as HandleAvalanche
-import WeatherSummary.HandleWeather as HandleWeather
-import SnowpackSummary.HandleSnowpack as HandleSnowpack
-import DocumentSummary.HandleDocuments as HandleDocuments
+import HandleFatal.IncidentSummary.HandleIncident as HandleIncident
+import HandleFatal.AvalancheSummary.HandleAvalanche as HandleAvalanche
+import HandleFatal.WeatherSummary.HandleWeather as HandleWeather
+import HandleFatal.SnowpackSummary.HandleSnowpack as HandleSnowpack
+import HandleFatal.DocumentSummary.HandleDocuments as HandleDocuments
 import requests
 
 # main entry point for the program to extract fatal incidents

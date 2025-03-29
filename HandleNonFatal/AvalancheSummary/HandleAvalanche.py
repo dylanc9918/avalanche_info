@@ -5,32 +5,39 @@ from shapely.geometry import Point
 
 def insert_avalanche_summary(incident_json, conn):
 
-    avalanche_json = incident_json['avalanche_obs']
+    avalanche_json = incident_json['observations']['avalanche']
 
-    unique_id = incident_json['id']
+    unique_id = incident_json['submissionID']
 
     cursor = conn.cursor()
 
-    try:
-        size = float(avalanche_json[0].get('size'))
-    except:
-        size = None
-
     insert_query = """
-    INSERT INTO avalanches_nonfatal (date,size,type,avy_trigger,elevation,aspect,slab_width,slab_thick,id	
+    INSERT INTO avalanches_nonfatal (date, num_avalanche, size, type, avy_trigger, elevation, aspect, slab_width, slab_thick, run_length, start_angle, weak_layer_date, id	
 )
-    VALUES (%s,  %s, %s,  %s, %s,  %s,  %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
+
     data = (
-        avalanche_json[0].get('observation_date'),
-        size,
-        avalanche_json[0].get('type'),
-        avalanche_json[0].get('trigger'),
-        avalanche_json[0].get('elevation'),
-        avalanche_json[0].get('aspect', None),
-        avalanche_json[0].get('slab_width', None),
-        avalanche_json[0].get('slab_thickness', None),
-        unique_id)
+
+        avalanche_json.get('avalancheOccurrenceDatetime') if avalanche_json.get(
+            'avalancheOccurrenceDatetime') else None,
+        avalanche_json.get('numberOfAvalanches'),
+        avalanche_json.get('avalancheSize'),  #
+        avalanche_json.get('avalancheCharacter')[0] if avalanche_json.get(
+            'avalancheCharacter') else None,
+        avalanche_json.get('triggerSubType') if avalanche_json.get(
+            'triggerSubType') else None,
+        avalanche_json.get('startZoneElevation'),
+        avalanche_json.get('startZoneAspect')[0] if avalanche_json.get(
+            'startZoneAspect') else None,
+        avalanche_json.get('slabWidth', None),
+        avalanche_json.get('slabThickness', None),
+        avalanche_json.get('runLength', None),
+        avalanche_json.get('startZoneIncline', None),
+        avalanche_json.get('weakLayerBurialDate') if avalanche_json.get(
+            'weakLayerBurialDate') else None,
+        unique_id if unique_id else None
+    )
 
     try:
         cursor.execute(insert_query, data)
