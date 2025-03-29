@@ -4,18 +4,6 @@ This project is designed to handle, process, and store avalanche-related data, i
 
 ---
 
-## Table of Contents
-
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Database Schema](#database-schema)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## Features
 
 - Fetch avalanche-related data from external APIs.
