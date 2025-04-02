@@ -7,10 +7,10 @@ import HandleNonFatal.IncidentSummary.HandleIncident as HandleIncident
 def handle_non_fatal(conn):
     url = "https://avcan-services-api.prod.avalanche.ca/min/en/submissions/"
 
-    id_list = list(pd.read_csv("HandleNonFatal/id_list.csv")['ID'])
+    id_list = list(pd.read_csv("HandleNonFatal/avalanche_id_list.csv")['ID'])
 
     obs_funcs_map = {
-        'avalanche': HandleAvalanche.insert_avalanche_summary
+        'avalanche': HandleAvalanche.insert_avalanche_data
     }
 
     for id in id_list:

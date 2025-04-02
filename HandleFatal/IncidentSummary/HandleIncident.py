@@ -3,6 +3,10 @@ from DBconn.db_connection import conn
 
 
 def insert_incident_summary(incident_json):
+    """
+    inserts the incident summary from the fatality database into the database. This includes the location, date, and other information about the incident how many caught etc
+    """
+
     cursor = conn.cursor()
 # Check if the location_coords is present and has 2 values to avoid dealing with NONE values
     if incident_json.get('location_coords')[0] == None or incident_json.get('location_coords')[1] == None:

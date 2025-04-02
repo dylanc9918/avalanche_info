@@ -7,6 +7,11 @@ def insert_avalanche_summary(incident_json, conn):
 
     avalanche_json = incident_json['observations']['avalanche']
 
+    try:
+        avalanche_json.get("numberOfAvalanches") == "1"
+    except:
+        pass
+
     unique_id = incident_json['submissionID']
 
     cursor = conn.cursor()

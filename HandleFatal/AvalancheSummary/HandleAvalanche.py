@@ -5,6 +5,9 @@ from DBconn.db_connection import conn
 
 
 def insert_avalanche_summary(incident_json):
+    """
+    Inserts an avalanche summary into the database from the fatality database. This is from the section talking about the metrics of the fatal avalanche
+    """
 
     avalanche_json = incident_json['avalanche_obs']
 

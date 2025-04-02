@@ -2,8 +2,11 @@ from shapely.geometry import Point
 
 
 def insert_avalanche_summary(response_json, conn):
+    """
+    Inserts an avalanche incident summary into the database.
 
-    incident_json = response_json['observations']['incident']
+    """
+
     unique_id = response_json['submissionID']
 
     coord = Point(
@@ -30,14 +33,12 @@ def insert_avalanche_summary(response_json, conn):
         response_json.get('location_description'),
         response_json.get('province'),
         coord,
-        incident_json.get('elevation'),
-        incident_json.get('groupActivity'),
-        incident_json.get('numberInvolved'),
-        incident_json.get('numberInjured'),
+        response_json['observations']['avalanche'].get('startZoneElevation'),
+        'observation',
         0,
-        incident_json.get('description', description)
-
-    )
+        0,
+        0,
+        description)
 
     try:
         cursor.execute(insert_query, data)

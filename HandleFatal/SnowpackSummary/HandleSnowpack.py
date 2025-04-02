@@ -2,6 +2,9 @@ from DBconn.db_connection import conn
 
 
 def insert_snowpack_summary(incident_json):
+    """
+    Inserts the snowpack summary from the fatality database into the database. This includes the snowpack observations and comments."""
+
     cursor = conn.cursor()
 
     snowpack_json = incident_json['snowpack_obs']

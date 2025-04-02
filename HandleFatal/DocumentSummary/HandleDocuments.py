@@ -2,6 +2,10 @@ from DBconn.db_connection import conn
 
 
 def insert_documents_summary(incident_json):
+    """
+    inserts the documents from the fatality database into the database. This includes images from SAR and other articles etc
+    """
+
     core_url = "https://incidents.avalanche.ca"
 
     cursor = conn.cursor()
