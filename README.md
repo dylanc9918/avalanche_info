@@ -11,6 +11,7 @@ This project is designed to handle, process, and store avalanche-related data, i
 - Handle spatial data (e.g., latitude/longitude) using `ST_GeomFromText` for geometry fields.
 - Modular design for handling different types of avalanche data (e.g., incidents, non-fatal avalanches).
 - Error handling and logging for robust data processing.
+- Modularity also allows me to add data cleaning steps like adding the labeling of the forecasting region that the incident belonged to
 
 ---
 
